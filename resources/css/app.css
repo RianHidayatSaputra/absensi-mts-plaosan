@@ -1,0 +1,149 @@
+/* tailwind css */
+
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+/* headings, body */
+
+@layer base {
+   h1 {
+      @apply text-3xl text-gray-800 font-semibold;
+   }
+   h2 {
+      @apply text-2xl text-gray-800 font-semibold;
+   }
+   h3 {
+      @apply text-xl text-gray-800 font-semibold;
+   }
+   h4 {
+      @apply text-lg text-gray-800 font-semibold;
+   }
+   h5 {
+      @apply text-base text-gray-800 font-semibold;
+   }
+   h6 {
+      @apply text-sm text-gray-800 font-semibold;
+   }
+   body {
+      @apply text-base bg-gray-100 text-gray-600 font-normal antialiased;
+   }
+
+   input::placeholder {
+      @apply text-base text-gray-600;
+   }
+}
+
+/* btn, card */
+
+@layer components {
+   .btn {
+      @apply bg-transparent border border-transparent rounded-md text-white cursor-pointer inline-block text-base font-semibold py-2 px-4 text-center transition align-middle select-none;
+   }
+   .btn-sm {
+      @apply py-1 px-2 text-sm rounded-md;
+   }
+   .btn-lg {
+      @apply py-2 px-4 text-lg rounded-lg;
+   }
+   .card {
+      @apply bg-white relative flex flex-col min-w-0 break-words rounded-md;
+   }
+   .card-body {
+      @apply flex-auto p-5;
+   }
+   /* .li-hari ul li::marker {
+      content: "✅";
+   } */
+
+   .li-hari ul {
+      list-style-type: none;
+      padding-left: 0;
+  }
+  
+  .li-hari ul li {
+      position: relative;
+      padding-left: 22px; /* Sesuaikan padding untuk ruang ikon */
+  }
+  
+  .li-hari ul li::before {
+      content: "✅";
+      position: absolute;
+      left: 0;
+      top: 0;
+  }
+
+  .logo {
+      display: flex;
+      justify-content: center;
+      width: 25%;
+  }
+
+  @media screen and (max-width: 725px) {
+      .logo {
+         width: 50%
+      }
+  }
+
+  /* LOADING */
+  @keyframes ldio-yzaezf3dcmj {
+      0% { opacity: 0 }
+      20% { opacity: 1 }
+      100% { opacity: 1 }
+   }
+   .ldio-yzaezf3dcmj div {
+      position: absolute;
+      animation: ldio-yzaezf3dcmj 1s linear infinite;
+      box-sizing: border-box!important;
+   }
+   .ldio-yzaezf3dcmj div:nth-child(1) {
+      width: 15px;
+      height: 15px;
+      left: 45px;
+      top: 115px;
+      border-radius: 50%;
+      background: #f47e60;
+   }
+   .ldio-yzaezf3dcmj div:nth-child(2) {
+      width: 36px;
+      height: 36px;
+      left: 56px;
+      top: 84px;
+      border-radius: 0 66px 0 0;
+      border: 20px solid #f8b26a;
+      background: none;
+      animation-delay: 0.1s;
+      border-bottom: 0;
+      border-left: 0
+   }
+   .ldio-yzaezf3dcmj div:nth-child(3) {
+      width: 80px;
+      height: 80px;
+      left: 56px;
+      top: 40px;
+      border-radius: 0 110px 0 0;
+      border: 20px solid #badb6e;
+      background: none;
+      animation-delay: 0.2s;
+      border-bottom: 0;
+      border-left: 0
+   }
+   .loadingio-spinner-radio-2by998twmg8 {
+      width: 200px;
+      height: 200px;
+      display: inline-block;
+      overflow: hidden;
+      background: #ffffff;
+   }
+   .ldio-yzaezf3dcmj {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform: translateZ(0) scale(1);
+      backface-visibility: hidden;
+      transform-origin: 0 0; /* see note above */
+   }
+   .ldio-yzaezf3dcmj div { box-sizing: content-box; }
+}
