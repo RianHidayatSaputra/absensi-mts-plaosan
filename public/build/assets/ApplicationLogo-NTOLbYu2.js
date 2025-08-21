@@ -1,0 +1,1 @@
+import{j as o}from"./app-DnD-Lx6E.js";import{L as i}from"./sima-DtxtMQ44.js";function e(s){return o.jsx("div",{className:"d-flex justify-center",children:o.jsx("img",{src:i,alt:"Logo",className:"img-fluid px-3 logo py-2 rounded-md bg-indigo-700"})})}export{e as A};
