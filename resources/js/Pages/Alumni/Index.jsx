@@ -1,7 +1,7 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head, Link, router } from "@inertiajs/react";
 import { useState, useRef, useCallback, useEffect, useMemo } from "react";
-import moment from "moment";
+// import moment from "moment";
 import DataTable from "react-data-table-component";
 import SelectOption from "@/Components/SelectOption";
 import { DatePicker } from "antd";
@@ -208,12 +208,12 @@ const Index = ({ auth, alumnis, perPage: initialPerPage }) => {
         return (
             <div className="w-full">
                 <div className="w-full flex justify-between">
-                    <Link
+                    {/* <Link
                         href={route("pindah-kelas.create")}
                         className="bg-violet-300 hover:bg-violet-200 no-underline h-10 hover:text-gray-700 pt-2 px-3 rounded text-black font-medium"
                     >
                         Tambah
-                    </Link>
+                    </Link> */}
 
                     {/* <FilterComponent
                         onFilter={(e) => setFilterText(e.target.value)}
