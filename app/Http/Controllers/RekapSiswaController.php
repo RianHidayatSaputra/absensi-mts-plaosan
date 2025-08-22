@@ -228,6 +228,10 @@ class RekapSiswaController extends Controller
         }
 
         SendMessageWhatsapp::SendMessageWhatsappToStudents($timeNow, $data, $dateNow, $setting_waktu);
+
+        // return response()->json([
+        //     "wa key" => env("API_WHATSAPP_KEY")
+        // ]);
     }
 
     public function exportExcel(Request $req) {

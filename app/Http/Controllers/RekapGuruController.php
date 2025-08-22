@@ -208,6 +208,10 @@ class RekapGuruController extends Controller
         }
 
         SendMessageWhatsapp::SendMessageWhatsappToTeachers($timeNow, $data, $dateNow, $setting_waktu);
+
+        // return response()->json([
+        //     "wa key" => env("API_WHATSAPP_KEY")
+        // ]);
         
     }
 
