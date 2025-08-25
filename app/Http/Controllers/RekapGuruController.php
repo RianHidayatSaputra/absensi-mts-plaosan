@@ -136,6 +136,12 @@ class RekapGuruController extends Controller
 
         $data = Guru::where('no_kartu', $req->no_kartu)->first();
 
+        if($data == null) {
+            return response()->json([
+                "message" => "Teacher Not Found!"
+            ]);
+        }
+
         $setting_waktu = Setting::first();
 
         $data_absen = RekapGuru::where('id_guru', $data->id)->whereDate('created_at', $dateNow)->first();
