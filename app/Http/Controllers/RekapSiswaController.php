@@ -156,6 +156,12 @@ class RekapSiswaController extends Controller
 
         $data = Siswa::where('no_kartu', $req->no_kartu)->first();
 
+        if($data == null) {
+            return response()->json([
+                "message" => "Teacher Not Found!"
+            ]);
+        }
+
         $setting_waktu = Setting::first();
 
         $data_absen = RekapSiswa::where('id_siswa', $data->id)->whereDate('created_at', $dateNow)->first();
