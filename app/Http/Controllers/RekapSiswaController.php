@@ -158,7 +158,7 @@ class RekapSiswaController extends Controller
 
         if($data == null) {
             return response()->json([
-                "message" => "Teacher Not Found!"
+                "message" => "Student Not Found!"
             ]);
         }
 
