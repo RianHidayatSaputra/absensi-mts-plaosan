@@ -22,7 +22,7 @@ class SiswaImport implements ToModel, WithStartRow
             'no_kartu' => (string) $row[1],
             'nama_siswa' => $row[2],
             'nama_ortu' => $row[3],
-            'no_ortu' => $row[4],
+            'no_ortu' => (string) $row[4],
             'tahun_masuk' => (string) $row[5],
             'id_kelas' => $kelas->id,
         ]);
