@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nama', 50);
             $table->string('nuptk', 30)->nullable();
             $table->string('jabatan', 50);
-            $table->string('status_kepegawaian', 5);
+            $table->string('status_kepegawaian', 5)->nullable();
             $table->string('alamat');
             $table->text('kontrak_guru')->nullable();
             $table->string('no_kartu', 50);

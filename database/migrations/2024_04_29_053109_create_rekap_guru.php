@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('rekap_guru', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_guru');
             $table->time('absen_masuk')->nullable();
             $table->time('absen_pulang')->nullable();
             $table->string('status', 30);
+            $table->foreign('id_guru')->references('id')->on('guru')->onDelete('cascade');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

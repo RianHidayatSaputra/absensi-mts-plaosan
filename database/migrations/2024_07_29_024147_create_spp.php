@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('spp', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_siswa');
+            $table->foreign('id_siswa')->references('id')->on('siswa')->onDelete('cascade');
             $table->integer('nominal_spp');
             $table->longText('data_spp');
             $table->timestamp('created_at')->useCurrent();
