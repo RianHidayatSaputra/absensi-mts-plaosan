@@ -16,6 +16,7 @@ return new class extends Migration
             $table->time('absen_masuk')->nullable();
             $table->time('absen_pulang')->nullable();
             $table->string('status', 30);
+            $table->unsignedBigInteger('id_guru');
             $table->foreign('id_guru')->references('id')->on('guru')->onDelete('cascade');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
