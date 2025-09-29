@@ -34,7 +34,7 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
         // session(['session' => A]);
 
-        if(Auth::user()->role == 'guru') {
+        if(Auth::user()->role == 'guru' || Auth::user()->role == 'kepala madrasah' || Auth::user()->role == 'kurikulum' || Auth::user()->role == 'kesiswaan') {
 
             return to_route('rekap-guru.index');
             
