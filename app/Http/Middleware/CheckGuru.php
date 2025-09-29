@@ -16,7 +16,7 @@ class CheckGuru
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(Auth::user()->role == 'guru') {
+        if(Auth::user()->role == 'guru' || Auth::user()->role == 'kepala madrasah' || Auth::user()->role == 'kurikulum' || Auth::user()->role == 'kesiswaan') {
             // return redirect()->back();
             return to_route('rekap-guru.index');
         };
