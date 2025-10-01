@@ -61,7 +61,7 @@ class CheckAbsen extends Command
                 CURLOPT_CUSTOMREQUEST => 'POST',
                 CURLOPT_POSTFIELDS => array(
                 'target' => $guru->no_wa,
-                "message" => 'Hari ini '.$guru->nama.' tidak melakukan absen sama sekali! Absen otomatis akan terisi oleh system dengan keterangan Tidak Hadir! Selamat beristirahat dan sampai jumpa hari esok!'
+                "message" => 'Hari ini '.$guru->nama.' tidak melakukan absen sama sekali! Absen otomatis akan terisi oleh system dengan keterangan Tidak Absen! Selamat beristirahat dan sampai jumpa hari esok!'
                 // 'countryCode' => '62', //optional
                 ),
                 CURLOPT_HTTPHEADER => array(
