@@ -32,13 +32,13 @@ class CheckAbsen extends Command
         Carbon::setLocale('id');
         $dayNow = Carbon::now('Asia/Jakarta')->format('d');
 
-        $rekapGuruNames = RekapGuru::whereDay('created_at', $dayNow)->pluck('nama')->toArray();
-        $missingGurus = Guru::whereNotIn('nama', $rekapGuruNames)->get();
+        $rekapGuruId = RekapGuru::whereDay('created_at', $dayNow)->pluck('id_guru')->toArray();
+        $missingGurus = Guru::whereNotIn('id', $rekapGuruId)->get();
 
         foreach ($missingGurus as $guru) {
             // Log::info($guru->nama);
             RekapGuru::create([
-                'nama' => $guru->nama,
+                'id_guru' => $guru->id,
                 'absen_masuk' => "19:30",
                 'absen_pulang' => "19:30",
                 'status' => 'Tidak Absen',

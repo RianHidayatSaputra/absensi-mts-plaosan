@@ -47,7 +47,7 @@ class CheckContract extends Command
                     if($hl->tanggal == $dateNow) {
                         
                         RekapGuru::create([
-                            'nama' => $guru->nama,
+                            'id_guru' => $guru->id,
                             'absen_masuk' => "16:00",
                             'absen_pulang' => "16:00",
                             'status' => 'Hari Libur '.$hl->nama,
@@ -68,14 +68,14 @@ class CheckContract extends Command
                     $kg = collect($kontrak_guru);
     
                     if(!$kg->contains($dayNowFix)) {
-                        RekapGuru::create([
-                            'nama' => $guru->nama,
-                            'absen_masuk' => "16:00",
-                            'absen_pulang' => "16:00",
-                            'status' => 'Tidak Ada Kontrak',
-                            'created_at' => Carbon::now('Asia/Jakarta')->format('Y-m-d H:i:s'),
-                            'updated_at' => Carbon::now('Asia/Jakarta')->format('Y-m-d H:i:s'),
-                        ]);
+                        // RekapGuru::create([
+                        //     'nama' => $guru->nama,
+                        //     'absen_masuk' => "16:00",
+                        //     'absen_pulang' => "16:00",
+                        //     'status' => 'Tidak Ada Kontrak',
+                        //     'created_at' => Carbon::now('Asia/Jakarta')->format('Y-m-d H:i:s'),
+                        //     'updated_at' => Carbon::now('Asia/Jakarta')->format('Y-m-d H:i:s'),
+                        // ]);
     
                         $token = env('API_WHATSAPP_KEY');
     
@@ -92,7 +92,7 @@ class CheckContract extends Command
                         CURLOPT_CUSTOMREQUEST => 'POST',
                         CURLOPT_POSTFIELDS => array(
                         'target' => $guru->no_wa,
-                        "message" => 'Hari ini '.$guru->nama.' tidak ada kontrak di SMK Wikrama 1 Jepara! Absen otomatis akan terisi oleh system! Selamat beristirahat dan sampai jumpa hari esok!'
+                        "message" => 'Hari ini '.$guru->nama.' tidak ada kontrak di MTs. Manahijul Ulum! Selamat beristirahat dan sampai jumpa hari esok!'
                         // 'countryCode' => '62', //optional
                         ),
                         CURLOPT_HTTPHEADER => array(

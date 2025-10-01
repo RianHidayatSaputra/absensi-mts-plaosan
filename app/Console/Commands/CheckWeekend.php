@@ -34,10 +34,10 @@ class CheckWeekend extends Command
 
         foreach($gurus as $guru) {
 
-            if($dayOfWeek == 6 || $dayOfWeek == 0) {
+            if($dayOfWeek == 5) {
 
                 $token = env('API_WHATSAPP_KEY');
-                $day_name = $dayOfWeek == 6 ? 'Sabtu' : 'Minggu';
+                $day_name = "Jumat";
 
                 $curl = curl_init();
 
