@@ -11,12 +11,12 @@ Artisan::command('inspire', function () {
 
 Schedule::command('app:check-contract')->dailyAt('18:00')->when(function() {
     $days = Carbon::now('Asia/Jakarta')->format('l');
-    return !in_array($days, ['Saturday','Sunday']);
+    return !in_array($days, ['Friday']);
 });
 
 Schedule::command('app:check-absen')->dailyAt('19:30')->when(function() {
     $days = Carbon::now('Asia/Jakarta')->format('l');
-    return !in_array($days, ['Saturday','Sunday']);
+    return !in_array($days, ['Friday']);
 });
 
 Schedule::command('app:backup-database')->weekly();
