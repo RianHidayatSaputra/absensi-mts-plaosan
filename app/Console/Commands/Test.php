@@ -28,7 +28,7 @@ class Test extends Command
      */
     public function handle()
     {
-        Log::info(Carbon::now('Asia/Jakarta')->format('Y-m-d H:i:s'));
+        Log::info("plaosan ".Carbon::now('Asia/Jakarta')->format('Y-m-d H:i:s'));
         // RekapGuru::create([
         //     'nama' => "Pak Muhammad Rizal Aftoni",
         //     'absen_masuk' => "16:00",
