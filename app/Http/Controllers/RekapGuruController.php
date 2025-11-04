@@ -132,7 +132,7 @@ class RekapGuruController extends Controller
 
         $timeNow = Carbon::now('Asia/Jakarta')->format('H:i');
         $dateNow = Carbon::now('Asia/Jakarta')->format('Y-m-d');
-        // dd(env('API_WHATSAPP_KEY'));
+        dd(env('API_WHATSAPP_KEY'));
 
         $data = Guru::where('no_kartu', $req->no_kartu)->first();
 
