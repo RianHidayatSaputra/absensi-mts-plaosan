@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\RekapGuruExceptGuruExport;
 use App\Exports\RekapGuruExport;
-use App\Helpers\SendMessageWhatsapp;
+use App\Helpers\SendNotificationFCM;
 use App\Models\RekapGuru;
 use App\Http\Requests\StoreRekapGuruRequest;
 use App\Http\Requests\UpdateRekapGuruRequest;
@@ -146,7 +146,7 @@ class RekapGuruController extends Controller
 
         $data_absen = RekapGuru::where('id_guru', $data->id)->whereDate('created_at', $dateNow)->first();
 
-        if($timeNow > '05:00' && $timeNow <= $setting_waktu->absen_masuk) {
+        if($timeNow > '00:00' && $timeNow <= $setting_waktu->absen_masuk) {
 
             if($data_absen == null) {
 
@@ -173,11 +173,11 @@ class RekapGuruController extends Controller
                 ]);
             }
 
-        }else if ($timeNow >= $setting_waktu->absen_pulang && $timeNow < '22:00') {
+        }else if ($timeNow >= $setting_waktu->absen_pulang && $timeNow < '23:59') {
             
             if($data_absen != null) {
 
-                if($data_absen->absen_masuk > '05:00' && $data_absen->absen_masuk <= $setting_waktu->absen_masuk) {
+                if($data_absen->absen_masuk > '00:00' && $data_absen->absen_masuk <= $setting_waktu->absen_masuk) {
 
                     RekapGuru::where('id', $data_absen->id)->update([
                         'absen_pulang' => $timeNow,
@@ -213,12 +213,7 @@ class RekapGuruController extends Controller
 
         }
 
-        SendMessageWhatsapp::SendMessageWhatsappToTeachers($timeNow, $data, $dateNow, $setting_waktu);
-
-        // return response()->json([
-        //     "wa key" => env("API_WHATSAPP_KEY")
-        // ]);
-        
+        SendNotificationFCM::SendNotificationToTeachers($timeNow, $data, $dateNow, $setting_waktu);
     }
 
     public function exportExcel() {

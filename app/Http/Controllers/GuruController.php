@@ -8,6 +8,7 @@ use App\Http\Requests\StoreGuruRequest;
 use App\Http\Requests\UpdateGuruRequest;
 use App\Imports\GuruImport;
 use App\Models\KontrakGuru;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Maatwebsite\Excel\Excel as ExcelExcel;
@@ -100,6 +101,12 @@ class GuruController extends Controller
         }
         
         $kontrak_guru = implode(",", $inputKontrakGuru);
+
+        if ($guru) {
+            User::where('name', $guru->nama)->update([
+                "name" => $request->nama
+            ]);
+        }
 
         Guru::where('id', $guru->id)->update([
             'nama' => $request->nama,

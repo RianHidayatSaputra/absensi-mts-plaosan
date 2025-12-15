@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\RekapSiswaExport;
-use App\Helpers\SendMessageWhatsapp;
+use App\Helpers\SendNotificationFCM;
 use App\Models\RekapSiswa;
 use App\Http\Requests\StoreRekapSiswaRequest;
 use App\Http\Requests\UpdateRekapSiswaRequest;
@@ -56,23 +56,6 @@ class RekapSiswaController extends Controller
         }
 
         $rekap_siswa = $query->paginate(request()->query('perPage') ?? 10);
-
-//         if ($dates) {
-// // dd($dates);
-//             $dates[0] = $dates[0] . ' 00:00:00';
-//             $dates[1] = $dates[1] . ' 23:59:59';
-
-//             $rekap_siswa = RekapSiswa::with('siswa.kelas')
-//                            ->whereHas('siswa.kelas', function ($query) use ($kelas_query) {
-//                                 $query->where('id', $kelas_query);
-//                             })
-//                             ->whereBetween('created_at', $dates)
-//                             ->paginate(request()->query('perPage') ?? 10); 
-
-//         }else{
-//             $rekap_siswa = RekapSiswa::with('siswa')->paginate(request()->query('perPage') ?? 10); 
-//         }
-// dd($rekap_siswa);
 
         return Inertia::render('RekapSiswa/Index', [
             'rekapSiswa' => $rekap_siswa,
@@ -166,7 +149,7 @@ class RekapSiswaController extends Controller
 
         $data_absen = RekapSiswa::where('id_siswa', $data->id)->whereDate('created_at', $dateNow)->first();
 
-        if($timeNow > '05:00' && $timeNow <= $setting_waktu->absen_masuk) {
+        if($timeNow > '00:00' && $timeNow <= $setting_waktu->absen_masuk) {
 
             if($data_absen == null) {
 
@@ -193,11 +176,11 @@ class RekapSiswaController extends Controller
                 ]);
             }
 
-        }else if ($timeNow >= $setting_waktu->absen_pulang && $timeNow < '22:00') {
+        }else if ($timeNow >= $setting_waktu->absen_pulang && $timeNow < '23:59') {
             
             if($data_absen != null) {
 
-                if($data_absen->absen_masuk > '05:00' && $data_absen->absen_masuk <= $setting_waktu->absen_masuk) {
+                if($data_absen->absen_masuk > '00:00' && $data_absen->absen_masuk <= $setting_waktu->absen_masuk) {
 
                     RekapSiswa::where('id', $data_absen->id)->update([
                         'absen_pulang' => $timeNow,
@@ -233,11 +216,7 @@ class RekapSiswaController extends Controller
 
         }
 
-        SendMessageWhatsapp::SendMessageWhatsappToStudents($timeNow, $data, $dateNow, $setting_waktu);
-
-        // return response()->json([
-        //     "wa key" => env("API_WHATSAPP_KEY")
-        // ]);
+        SendNotificationFCM::SendNotificationToSudents($timeNow, $data, $dateNow, $setting_waktu);
     }
 
     public function exportExcel(Request $req) {

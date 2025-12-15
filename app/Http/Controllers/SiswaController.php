@@ -8,6 +8,7 @@ use App\Http\Requests\StoreSiswaRequest;
 use App\Http\Requests\UpdateSiswaRequest;
 use App\Imports\SiswaImport;
 use App\Models\Kelas;
+use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel as ExcelExcel;
@@ -21,11 +22,6 @@ class SiswaController extends Controller
     public function index()
     {
         $siswa = Siswa::with('kelas')->paginate(request()->query('perPage') ?? 10); 
-        // $siswa = Siswa::with('kelas')
-        //         ->select('siswa.id as id', 'siswa.nama_siswa', 'siswa.nis', 'kelas.nama_kelas', 'siswa.nama_ortu', 'siswa.no_ortu')
-        //         ->paginate(request()
-        //         ->query('perPage') ?? 10); 
-// dd($siswa);
         return Inertia::render('Siswa/Index', [
             'siswa' => $siswa,
             'perPage' => request()->query('perPage') ?? 10
@@ -82,6 +78,12 @@ class SiswaController extends Controller
     public function update(UpdateSiswaRequest $request, Siswa $siswa)
     {
         $data = $request->validated();
+
+        if ($siswa) {
+            User::where('name', $siswa->nama_siswa)->update([
+                'name' => $request->nama_siswa
+            ]);
+        }
 
         Siswa::where('id', $siswa->id)->update($data);
 

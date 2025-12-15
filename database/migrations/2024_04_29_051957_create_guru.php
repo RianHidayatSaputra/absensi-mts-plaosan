@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('kontrak_guru')->nullable();
             $table->string('no_kartu', 50);
             $table->string('no_wa', 20);
+            $table->string('device_token')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

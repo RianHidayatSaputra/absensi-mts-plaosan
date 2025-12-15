@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('tahun_masuk');
             $table->unsignedBigInteger('id_kelas');
             $table->foreign('id_kelas')->references('id')->on('kelas')->onDelete('cascade');
+            $table->string('device_token')->nullable();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
         });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Guru;
+use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -30,8 +31,11 @@ class UserController extends Controller
     public function create()
     {
         $gurus = Guru::all();
+        $siswas = Siswa::all();
+
         return Inertia::render('User/Add', [
-            'gurus' => $gurus
+            'gurus' => $gurus,
+            'siswas' => $siswas
         ]);
     }
 
