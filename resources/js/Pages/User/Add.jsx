@@ -124,6 +124,7 @@ const Add = ({ auth, gurus, siswas }) => {
                                     <option value="bendahara">Bendahara</option>
                                     <option value="guru">Guru</option>
                                     <option value="karyawan">Karyawan</option>
+                                    <option value="siswa">Siswa</option>
                                 </SelectOption>
                                 <InputError
                                     message={errors.role ?? ""}
