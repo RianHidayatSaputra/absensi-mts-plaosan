@@ -7,6 +7,7 @@ use App\Models\Guru;
 use App\Models\RekapGuru;
 use App\Models\RekapSiswa;
 use App\Models\Siswa;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -95,5 +96,27 @@ class RekapAbsenController extends Controller
             'message' => 'Success!',
             'data' => $absenToday
         ]);
+    }
+
+    public function generateAccountLogin()
+    {
+        $siswas = Siswa::all();
+
+        foreach ($siswas as $siswa) {
+            $email = $siswa->nis . '@gmail.com';
+
+            $exists = User::where('email', $email)->exists();
+
+            if (!$exists) {
+                User::create([
+                    'name'     => $siswa->nama_siswa,
+                    'email'    => $email,
+                    'password' => bcrypt('12345678'),
+                    'role'     => 'siswa',
+                ]);
+            }
+        }
+
+        return response()->json(['message' => 'Akun siswa berhasil digenerate!']);
     }
 }
