@@ -98,25 +98,25 @@ class RekapAbsenController extends Controller
         ]);
     }
 
-    public function generateAccountLogin()
-    {
-        $siswas = Siswa::all();
+    // public function generateAccountLogin()
+    // {
+    //     $siswas = Siswa::all();
 
-        foreach ($siswas as $siswa) {
-            $email = $siswa->nis . '@gmail.com';
+    //     foreach ($siswas as $siswa) {
+    //         $email = $siswa->nis . '@gmail.com';
 
-            $exists = User::where('email', $email)->exists();
+    //         $exists = User::where('email', $email)->exists();
 
-            if (!$exists) {
-                User::create([
-                    'name'     => $siswa->nama_siswa,
-                    'email'    => $email,
-                    'password' => bcrypt('12345678'),
-                    'role'     => 'siswa',
-                ]);
-            }
-        }
+    //         if (!$exists) {
+    //             User::create([
+    //                 'name'     => $siswa->nama_siswa,
+    //                 'email'    => $email,
+    //                 'password' => bcrypt('12345678'),
+    //                 'role'     => 'siswa',
+    //             ]);
+    //         }
+    //     }
 
-        return response()->json(['message' => 'Akun siswa berhasil digenerate!']);
-    }
+    //     return response()->json(['message' => 'Akun siswa berhasil digenerate!']);
+    // }
 }

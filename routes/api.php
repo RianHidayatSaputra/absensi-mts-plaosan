@@ -26,4 +26,4 @@ Route::middleware(['api', 'auth:api'])->group(function () {
 
 Route::post('rekap-guru/insert-absen', [RekapGuruController::class, 'insertAbsenFromIot']);
 Route::post('rekap-siswa/insert-absen', [RekapSiswaController::class, 'insertAbsenFromIot']);
-Route::get('generate-akun-login', [RekapAbsenController::class, 'generateAccountLogin']);
+// Route::get('generate-akun-login', [RekapAbsenController::class, 'generateAccountLogin']);
